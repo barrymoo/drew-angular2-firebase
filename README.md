@@ -1,6 +1,27 @@
 # DrewAngular2Firebase
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.9.
+## Status
+
+Extremely initial. To do:
+* Get my database information from the old project on Firebase
+* Integrate [three.js](http://threejs.org)
+* Add Classes:
+ - File, InputFile, OutputFile
+ - Molecule
+
+## About
+
+This is a rewrite of [drew](https://github.com/barrymoo/drew) with the following
+goals:
+* Component and object oriented codebase: Angular 2 and ES6
+* Likely hosting on Firebase with their database
+
+## Relevant softwares used in the project:
+* [angular-cli](https://github.com/angular/angular-cli)
+* [Angular 2](https://github.com/angular/angular)
+* [Firebase for Angular](https://github.com/angular/angularfire2)
+
+# Below is the standard `angular-cli` `README.md` content
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
