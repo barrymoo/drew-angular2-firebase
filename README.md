@@ -2,12 +2,15 @@
 
 ## Status
 
-Extremely initial. To do:
-* Get my database information from the old project on Firebase
+Extremely initial. Only has basic Firebase integration
+
+To do:
+* Get reference database information from the old project onto Firebase
 * Integrate [three.js](http://threejs.org)
 * Add Classes:
  - File, InputFile, OutputFile
  - Molecule
+* Mock up user interface (Bootstrap?)
 
 ## About
 
