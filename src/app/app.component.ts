@@ -11,8 +11,8 @@ export class AppComponent {
   items: FirebaseListObservable<any []>;
 
   constructor(af: AngularFire) {
-    this.items = af.database.list('items');
+    this.items = af.database.list('molecular-data');
   }
 
-  title = 'app works!';
+  title = 'Get names from the Firebase molecular database:';
 }
