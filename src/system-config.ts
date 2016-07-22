@@ -8,7 +8,8 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'firebase': 'vendor/firebase/firebase.js',
-  'angularfire2': 'vendor/angularfire2'
+  'angularfire2': 'vendor/angularfire2',
+  'three': 'vendor/three/build/three.js'
 };
 
 /** User packages configuration. */
@@ -16,6 +17,9 @@ const packages: any = {
   angularfire2: {
     defaultExtension: 'js',
     main: 'angularfire2.js'
+  },
+  three: {
+    main: 'three.js'
   }
 };
 
@@ -40,6 +44,7 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/three',
   /** @cli-barrel */
 ];
 
