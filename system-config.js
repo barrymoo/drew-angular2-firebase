@@ -8,7 +8,7 @@
 var map = {
     'firebase': 'vendor/firebase/firebase.js',
     'angularfire2': 'vendor/angularfire2',
-    'three': 'vendor/three/build/three.js'
+    'three': 'vendor/three/build'
 };
 /** User packages configuration. */
 var packages = {
