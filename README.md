@@ -7,7 +7,8 @@ Extremely initial.
 To do:
 - [x] Firebase Molecular Data and Fixtures
 - [x] Integrate [three.js](http://threejs.org)
-- [ ] Work on Three.js Component
+- [x] Work on ThreeService and integrate with ThreeComponent
+- [ ] Add TrackballControls.js to ThreeService
 - [ ] Add Classes:
  * File, InputFile, OutputFile
  * Molecule

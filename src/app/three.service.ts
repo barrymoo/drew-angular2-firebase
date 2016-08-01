@@ -19,12 +19,12 @@ export class ThreeService {
     // camera and controls settings
     this.camera = new PerspectiveCamera(60, this.width/this.height, 1, 1000);
     this.camera.position.set(0, 0, 10);
-    this.controls.rotateSpeed = 10;
-    this.controls.zoomSpeed = 5;
-    this.controls.panSpeed = 5;
-    this.controls.staticMoving = true;
-    this.controls.keys = [65, 83, 68];
-    this.controls.addEventListener('change', this.render);
+    //this.controls.rotateSpeed = 10;
+    //this.controls.zoomSpeed = 5;
+    //this.controls.panSpeed = 5;
+    //this.controls.staticMoving = true;
+    //this.controls.keys = [65, 83, 68];
+    //this.controls.addEventListener('change', this.render);
 
     this.scene = new Scene();
     this.renderer = new WebGLRenderer();
@@ -41,8 +41,8 @@ export class ThreeService {
   }
 
   private animate() {
-    requestAnimationFrame(this.animate);
-    this.controls.update();
+    requestAnimationFrame(this.animate.bind(this));
+    //this.controls.update();
   }
 
 }
