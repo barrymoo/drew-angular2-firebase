@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { ThreeComponent } from './three/three.component'
+import { ThreeComponent } from './three/three.component';
 
 @Component({
   moduleId: module.id,
@@ -13,7 +13,7 @@ export class AppComponent {
   items: FirebaseListObservable<any []>;
 
   constructor(af: AngularFire) {
-    this.items = af.database.list('molecular-data');
+    this.items = af.database.list('/molecular-data');
   }
 
   title = 'Get names from the Firebase molecular database:';
