@@ -8,10 +8,10 @@ To do:
 - [x] Firebase Molecular Data and Fixtures
 - [x] Integrate [three.js](http://threejs.org)
 - [x] Work on ThreeService and integrate with ThreeComponent
-- [ ] Adapt TrackballControls Class to ThreeService
+- [x] Add TrackballControls Class and import into ThreeService
  * [x] Mouse events registering
  * [x] TrackballControls working with cube
- * [ ] Need to fix issues with right click
+ * [x] Need to fix issues with right click
 - [ ] Add Classes:
  * File, InputFile, OutputFile
  * Molecule
