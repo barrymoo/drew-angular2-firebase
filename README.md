@@ -10,7 +10,8 @@ To do:
 - [x] Work on ThreeService and integrate with ThreeComponent
 - [ ] Adapt TrackballControls Class to ThreeService
  * [x] Mouse events registering
- * [ ] Add cube to start moving around
+ * [x] TrackballControls working with cube
+ * [ ] Need to fix issues with right click
 - [ ] Add Classes:
  * File, InputFile, OutputFile
  * Molecule

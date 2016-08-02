@@ -1,6 +1,7 @@
 /// <reference path="../../typings/globals/three/index.d.ts" />
 import { Injectable } from '@angular/core';
-import { Vector2, Vector3, Quaternion, Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+import { Vector2, Vector3, Quaternion, Scene, PerspectiveCamera,
+         WebGLRenderer, MeshBasicMaterial, BoxGeometry, Mesh } from 'three';
 
 @Injectable()
 export class ThreeService {
@@ -10,6 +11,7 @@ export class ThreeService {
   private controls: any;
   private scene: Scene;
   private renderer: WebGLRenderer;
+  public cube: Mesh;
 
   public init(container: HTMLElement) {
     // width and height
@@ -21,32 +23,36 @@ export class ThreeService {
     this.camera.position.set(0, 0, 10);
 
     this.scene = new Scene();
-    this.renderer = new WebGLRenderer();
+    this.renderer = new WebGLRenderer({antialias: true});
     this.renderer.setSize(this.width, this.height);
     container.appendChild(this.renderer.domElement);
 
     this.controls = new TrackballControls;
     this.controls.init(this.camera, this.renderer.domElement);
-    // this.controls.rotateSpeed = 10;
-    // this.controls.zoomSpeed = 5;
-    // this.controls.panSpeed = 5;
-    // this.controls.staticMoving = true;
-    // this.controls.keys = [65, 83, 68];
+    this.controls.rotateSpeed = 10;
+    this.controls.zoomSpeed = 5;
+    this.controls.panSpeed = 5;
+    this.controls.staticMoving = true;
+
+    var geometry = new BoxGeometry(1, 1, 1);
+    var material = new MeshBasicMaterial({color: 0x00ff00});
+    this.cube = new Mesh(geometry, material);
+    this.scene.add(this.cube);
 
     this.render();
     this.animate();
-
   }
 
   constructor() {}
 
-  private render() {
+  public render = () => {
     this.renderer.render(this.scene, this.camera);
   }
 
-  private animate() {
-    requestAnimationFrame(this.animate.bind(this));
-    //this.controls.update();
+  public animate = () => {
+    requestAnimationFrame(this.animate);
+    this.controls.update();
+    this.render();
   }
 
 }
@@ -109,7 +115,7 @@ class TrackballControls {
   public startEvent: Event = new Event('start');
   public endEvent: Event = new Event('end');
 
-  public init(object: PerspectiveCamera, domElement: HTMLElement) {
+  public init = (object: PerspectiveCamera, domElement: HTMLElement) => {
     this.object = object;
     this.domElement = domElement;
     this.target0 = this.target.clone();
@@ -129,7 +135,7 @@ class TrackballControls {
 
   	this.handleResize();
   	this.update();
-  }
+  };
 
   public handleResize = () => {
     let box = this.domElement.getBoundingClientRect();
@@ -138,9 +144,9 @@ class TrackballControls {
     this.screen.top = box.top + window.pageYOffset - d.clientTop;
     this.screen.width =  box.width;
     this.screen.height = box.height;
-  }
+  };
 
-  public getMouseOnScreen: any = (function () {
+  public getMouseOnScreen = (function () {
     let vector = new Vector2();
 
     return function getMouseOnScreen(pageX, pageY) {
@@ -211,7 +217,7 @@ class TrackballControls {
       };
     }());
 
-  public zoomCamera() {
+  public zoomCamera = () => {
     let factor: number = 0;
     if (this.state === this.STATE.TOUCH_ZOOM_PAN) {
       factor = this.touchZoomDistanceStart / this.touchZoomDistanceEnd;
@@ -258,7 +264,7 @@ class TrackballControls {
     };
   }());
 
-  public checkDistances() {
+  public checkDistances = () => {
     if (! this.noZoom || ! this.noPan) {
       if (this.eye.lengthSq() > this.maxDistance * this.maxDistance) {
         this.object.position.addVectors(this.target, this.eye.setLength(this.maxDistance));
@@ -271,7 +277,7 @@ class TrackballControls {
     }
   };
 
-  public update() {
+  public update = () => {
     this.eye.subVectors(this.object.position, this.target);
     if (!this.noRotate) {
       this.rotateCamera();
@@ -373,15 +379,16 @@ class TrackballControls {
     dispatchEvent(this.endEvent);
   };
 
-  public mousewheel = (event: MouseEvent) => {
+  public mousewheel = (event: WheelEvent) => {
 		if (this.enabled === false) return;
 		event.preventDefault();
 		event.stopPropagation();
 		let delta: number = 0;
-		if (event.detail) {
-			// Firefox
-			delta = - event.detail / 3;
-		}
+    if (event.deltaY) {
+      delta = event.deltaY / 10;
+    } else if (event.detail) {
+      delta = -event.detail / 3;
+    }
 		this.zoomStart.y += delta * 0.01;
 		dispatchEvent(this.startEvent);
 		dispatchEvent(this.endEvent);
